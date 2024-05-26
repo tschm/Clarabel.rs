@@ -40,9 +40,9 @@ jobs:
           python examples/python/example_sdp.py 
 
       - name: Upload wheels
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: wheels
+          name: wheels-${{ env.PYTHON_VERSION }}-linux
           path: dist
 
 
@@ -92,9 +92,9 @@ jobs:
           python examples/python/example_sdp.py 
 
       - name: Upload wheels
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: wheels
+          name: wheels-${{ env.PYTHON_VERSION }}-macos
           path: dist
 
   windows:
@@ -125,9 +125,9 @@ jobs:
           python examples/python/example_sdp.py 
 
       - name: Upload wheels
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: wheels
+          name: wheels-${{ env.PYTHON_VERSION }}-windowsww
           path: dist
 
   sdist:
@@ -146,9 +146,9 @@ jobs:
           args: --out dist 
 
       - name: Upload sdist
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: sdist
+          name: sdist-${{ env.PYTHON_VERSION }}-linux
           path: dist
 
 
@@ -160,12 +160,12 @@ jobs:
       - windows
       - linux
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
-          name: wheels
-      - uses: actions/download-artifact@v3
+          name: wheels-${{ env.PYTHON_VERSION }}
+      - uses: actions/download-artifact@v4
         with:
-          name: sdist
+          name: sdist-${{ env.PYTHON_VERSION }}
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
