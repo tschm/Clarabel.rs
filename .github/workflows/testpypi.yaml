@@ -127,7 +127,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-${{ env.PYTHON_VERSION }}-windowsww
+          name: wheels-${{ env.PYTHON_VERSION }}-${{ PROCESSOR_ARCHITECTURE }}-windows
           path: dist
 
   sdist:
