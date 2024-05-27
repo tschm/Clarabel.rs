@@ -109,7 +109,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        target: [x64, x86]
+        target: [x64] #, x86]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -157,6 +157,11 @@ jobs:
           manylinux: auto
           args: --out dist 
 
+      - name: Test sdist
+        run: |
+          pip install --force-reinstall --verbose dist/*.tar.gz
+          python -c 'import clarabel'
+          
       - name: Upload sdist
         uses: actions/upload-artifact@v4
         with:
