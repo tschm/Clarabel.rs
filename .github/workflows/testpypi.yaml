@@ -1,4 +1,4 @@
-    name: testpypi
+name: testpypi
 
 on:
   workflow_dispatch:
