@@ -1,4 +1,4 @@
-name: testpypi
+    name: testpypi
 
 on:
   workflow_dispatch:
@@ -26,9 +26,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          architecture: ${{ matrix.target }}
 
-      - name: Determine Platform Architecture
+      - name: Platform Architecture
         run: |
           echo "Target architecture: ${{ matrix.target }}"
           
@@ -51,7 +50,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-${{ runner.os }}-${{ env.TARGET }}
+          name: wheels-${{ runner.os }}-${{ matrix.target }}
           path: dist
 
 
@@ -62,7 +61,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          architecture: x64
+          #architecture: x64
 
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
@@ -103,7 +102,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-${{ runner.os }}-${{ matrix.target }}
+          name: wheels-${{ runner.os }}     # -${{ matrix.target }}
           path: dist
 
   windows:
@@ -116,9 +115,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          architecture: ${{ matrix.target }}
+          #architecture: ${{ matrix.target }}
 
-      - name: Determine Platform Architecture
+      - name: Platform Architecture
         run: |
           echo "Target architecture: ${{ matrix.target }}"
           
@@ -178,7 +177,7 @@ jobs:
           name: wheels-*
       - uses: actions/download-artifact@v4
         with:
-          name: sdist-*
+          name: sdist
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
