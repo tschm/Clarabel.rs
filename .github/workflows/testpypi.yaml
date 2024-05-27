@@ -27,6 +27,10 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
+      - name: Determine Platform Architecture
+        run: |
+          echo "Target architecture: ${{ matrix.target }}"
+          
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
