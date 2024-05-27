@@ -165,7 +165,7 @@ jobs:
       - name: Upload sdist
         uses: actions/upload-artifact@v4
         with:
-          name: sdist-${{ runner.os }}-${{ runner.architecture }}
+          name: sdist 
           path: dist
 
 
@@ -177,13 +177,14 @@ jobs:
       - macos
       - windows
       - linux
+      - sdist
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: wheels-${{ runner.os }}-${{ runner.architecture }}
+          name: wheels-*
       - uses: actions/download-artifact@v4
         with:
-          name: sdist-${{ runner.os }}-${{ runner.architecture }}
+          name: sdist
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
