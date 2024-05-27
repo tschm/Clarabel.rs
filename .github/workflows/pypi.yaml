@@ -1,7 +1,7 @@
 name: pypi
 
 on:
-  workflow_dispatch:
+  #workflow_dispatch:
   pull_request:
     branches:    
       - main
@@ -107,12 +107,11 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-${{ runner.os }}-${{ runner.architecture }}
+          name: wheels-${{ runner.os }}
           path: dist
 
   windows:
     runs-on: windows-latest
-    # if: "startsWith(github.ref, 'refs/tags/v')"
     strategy:
       matrix:
         target: [x64, x86]
@@ -141,7 +140,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-${{ runner.os }}-${{ runner.architecture }}
+          name: wheels-${{ runner.os }}-${{ matrix.target      }}
           path: dist
 
   sdist:
