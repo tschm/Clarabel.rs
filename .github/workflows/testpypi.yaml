@@ -15,8 +15,12 @@ jobs:
   linux:
     runs-on: ubuntu-latest
     strategy:
-       matrix:
+      matrix:
         target: [x86_64, i686, aarch64]
+
+    env:
+      TARGET: ${{ matrix.target }}
+      
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -42,7 +46,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-${{ runner.os }}-${{ matrix.target }}
+          name: wheels-${{ runner.os }}-${{ env.TARGET }}
           path: dist
 
 
