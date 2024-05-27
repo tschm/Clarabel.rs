@@ -42,7 +42,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels--${{ runner.os }}-${{ runner.architecture }}
+          name: wheels-${{ runner.os }}-${{ runner.architecture }}
           path: dist
 
 
@@ -94,7 +94,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels--${{ runner.os }}-${{ runner.architecture }}
+          name: wheels-${{ runner.os }}-${{ runner.architecture }}
           path: dist
 
   windows:
@@ -127,7 +127,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels--${{ runner.os }}-${{ runner.architecture }}
+          name: wheels-${{ runner.os }}-${{ runner.architecture }}
           path: dist
 
   sdist:
@@ -148,7 +148,7 @@ jobs:
       - name: Upload sdist
         uses: actions/upload-artifact@v4
         with:
-          name: sdist--${{ runner.os }}-${{ runner.architecture }}
+          name: sdist-${{ runner.os }}-${{ runner.architecture }}
           path: dist
 
 
@@ -162,10 +162,10 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: wheels--${{ runner.os }}-${{ runner.architecture }}
+          name: wheels-${{ runner.os }}-${{ runner.architecture }}
       - uses: actions/download-artifact@v4
         with:
-          name: sdist--${{ runner.os }}-${{ runner.architecture }}
+          name: sdist-${{ runner.os }}-${{ runner.architecture }}
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
